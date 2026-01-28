@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./";
+
+message GoodsAddReq {
+  string name = 1;
+  float price =2;
+  int64 stock =3;
+}
+
+message GoodsAddResp {
+  string greet = 1;
+}
+message GoodsDelReq {
+  int64 id =1;
+}
+
+message GoodsDelResp {
+  string greet = 1;
+}
+message GoodsUpdateReq {
+  int64 id =1;
+  int64 stock =2;
+}
+
+message GoodsUpdateResp {
+  string greet = 1;
+}
+message GoodsListReq {
+  int64 id =1;
+}
+
+message GoodsListResp {
+  string greet = 1;
+  repeated List list =2;
+}
+message List {
+  string name = 1;
+  float price =2;
+  int64 stock =3;
+}
+message EsReq {
+  string keyword =1;
+  int64 page =2;
+  int64 size =3;
+}
+
+message EsResp {
+  string greet = 1;
+  repeated Es es =2;
+}
+message Es {
+  string name = 1;
+  float price =2;
+  int64 stock =3;
+}
+service Goods {
+  rpc GoodsAdd(GoodsAddReq) returns (GoodsAddResp);
+  rpc GoodsDel(GoodsDelReq) returns (GoodsDelResp);
+  rpc GoodsUpdate(GoodsUpdateReq) returns (GoodsUpdateResp);
+  rpc GoodsList(GoodsListReq) returns (GoodsListResp);
+  rpc Es(EsReq) returns (EsResp);
+}
